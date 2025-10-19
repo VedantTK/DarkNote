@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %}Welcome — DarkNote{% endblock %}
+{% block content %}
+  <div class="text-center py-3">
+    <h1 class="display-5">Welcome to DarkNote</h1>
+    <p class="lead text-secondary">DarkNote — Share your thoughts with the world. Post public notes.</p>
+
+    <div class="mt-3">
+      {% if not current_user.is_authenticated %}
+        <button id="signupBtnLarge" class="btn btn-light btn-lg me-2">Create account</button>
+      {% else %}
+        <div class="mt-2">
+          <button id="newNoteBtnLarge" class="btn btn-light btn-lg">Create a public note</button>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+
+  <hr class="border-secondary" />
+
+  <div>
+    <h4 class="mb-3">Public Notes</h4>
+
+    {% if notes %}
+      <div id="notesList" class="row gy-3">
+        {% for note in notes %}
+          <div class="col-12">
+            <div class="card bg-secondary text-light">
+              <div class="card-body">
+                <p class="mb-1">{{ note.content | e }}</p>
+                <div class="small text-muted">— {{ note.author.username }} • {{ note.created_at.strftime('%Y-%m-%d %H:%M') }}</div>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    {% else %}
+      <p class="text-muted">No notes yet — be the first to post one.</p>
+    {% endif %}
+  </div>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}Dashboard — DarkNote{% endblock %}
+{% block content %}
+  <div class="card bg-secondary text-light mb-3">
+    <div class="card-body">
+      <h3 class="card-title">Hello, {{ user.username }}!</h3>
+      <p class="card-text text-muted">This is your dashboard. You are logged in with email: <strong>{{ user.email }}</strong></p>
+      <p class="small">Click <strong>New Note</strong> in the top-right to post a public note.</p>
+    </div>
+  </div>
+
+  <h5 class="mb-3">Public Notes</h5>
+  {% if notes %}
+    <div id="notesList" class="row gy-3">
+      {% for note in notes %}
+        <div class="col-12">
+          <div class="card bg-secondary text-light">
+            <div class="card-body">
+              <p class="mb-1">{{ note.content | e }}</p>
+              <div class="small text-muted">— {{ note.author.username }} • {{ note.created_at.strftime('%Y-%m-%d %H:%M') }}</div>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <p class="text-muted">No notes yet — create one using the New Note button.</p>
+  {% endif %}
+{% endblock %}

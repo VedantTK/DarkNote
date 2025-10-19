@@ -1,0 +1,39 @@
+/* make the page height fill viewport when using flex on body */
+html, body {
+  height: 100%;
+}
+
+/* dark theme basics */
+body { background-color: #0b0f14; color: #e6eef6; }
+a { color: #9ad1ff; }
+
+.navbar-brand { font-weight: 700; }
+
+/* navbar action area spacing and responsive wrap */
+.nav-actions {
+  gap: 0.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+/* card styles */
+.card { background-color: #111418; border: 1px solid rgba(255,255,255,0.04); }
+.btn-outline-light { border-color: rgba(255,255,255,0.15); }
+
+/* inputs */
+.form-control { border-radius: 6px; }
+
+/* small responsiveness helpers */
+@media (max-width: 576px) {
+  .display-5 { font-size: 1.8rem; }
+  .lead { font-size: 0.95rem; }
+  .nav-actions .btn { font-size: 0.85rem; padding: .325rem .5rem; }
+}
+
+/* footer fix: handled with body flex layout; keep footer styles */
+footer { position: relative; bottom: 0; width: 100%; }
+
+/* notes padding */
+#notesList .card { transition: transform 0.08s ease; }
+#notesList .card:hover { transform: translateY(-3px); }
