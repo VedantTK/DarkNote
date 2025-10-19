@@ -1,4 +1,4 @@
-# Flask Dark Auth (Demo)
+# DarkNote
 
 ## Prereqs
 - Docker & Docker Compose installed
