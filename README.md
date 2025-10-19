@@ -27,3 +27,24 @@ K8S Deployment:
 kubectl create namespace flask-demo
 kubectl -n flask-demo create secret generic flask-env --from-env-file=.env
 ```
+
+## Install the CloudNativePG Operator
+```bash
+kubectl create namespace cnpg-system
+
+helm repo add cnpg https://cloudnative-pg.github.io/charts
+helm repo update
+
+helm install cnpg \
+  cnpg/cloudnative-pg \
+  --namespace cnpg-system
+
+kubectl get pods -n cnpg-system
+
+kubectl apply -f cnpg-cluster.yml
+
+kubectl get clusters -n flask-demo
+
+kubectl get pods -n flask-demo -l cnpg.io/cluster=flask-db
+```
+
