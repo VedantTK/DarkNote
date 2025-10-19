@@ -1,0 +1,23 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: flask-db
+  namespace: flask-demo
+spec:
+  instances: 3  # number of PostgreSQL pods (1 primary + 2 replicas)
+  imageName: ghcr.io/cloudnative-pg/postgresql:15
+  primaryUpdateStrategy: unsupervised
+  storage:
+    size: 2Gi
+  monitoring:
+    enablePodMonitor: true
+  bootstrap:
+    initdb:
+      database: flaskdb
+      owner: flaskuser
+      secret:
+        name: flask-env   # existing secret that has POSTGRES_USER and POSTGRES_PASSWORD
+  postgresql:
+    parameters:
+      max_connections: "200"
+      shared_buffers: "256MB"
