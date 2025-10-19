@@ -22,7 +22,7 @@ docker compose up --build
 # or docker-compose up --build
 ```
 ## Run
-Build and start:
+K8S Deployment:
 ```bash
 kubectl create namespace flask-demo
 kubectl -n flask-demo create secret generic flask-env --from-env-file=.env
