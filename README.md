@@ -15,17 +15,13 @@
     POSTGRES_PORT=5432
     DATABASE_URL=postgresql://flaskuser:flaskpassword@db:5432/flaskdb
 
-## Create a Kubernetes Secret from your .env file
-    kubectl -n flask-demo create secret generic flask-env --from-env-file=.env
-
-
-## Run
+## Application Deployment using Docker
 Build and start:
 ```bash
 docker compose up --build
 # or docker-compose up --build
 ```
-## Run
+## Application Deployment in K8S and Create a Kubernetes Secret from your .env file
 K8S Deployment:
 ```bash
 kubectl create namespace flask-demo
